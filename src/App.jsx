@@ -6,7 +6,6 @@ import Login from "./pages/Login.jsx";
 import DoctorRegistration from "./pages/DoctorRegistration.jsx";
 import PatientRegistration from "./pages/PatientRegistration.jsx";
 import DoctorDashboard from "./pages/DoctorDashboard.jsx";
-import PatientDashboard from "./pages/PatientDashboard.jsx";
 import NotFound from "./pages/NotFound.jsx";
 import SetupPage from "./pages/SetupPage.jsx"; // splash screen
 
@@ -40,18 +39,14 @@ function App() {
           }
         />
 
-        {/* Patient Dashboard with setup screen */}
+        {/* Patient Dashboard will always show SetupPage */}
         <Route
           path="/patient-dashboard/*"
           element={
-            patientSetupDone ? (
-              <PatientDashboard />
-            ) : (
-              <SetupPage
-                doctorName="Patient"
-                onFinish={() => setPatientSetupDone(true)}
-              />
-            )
+            <SetupPage
+              doctorName="Patient"
+              onFinish={() => setPatientSetupDone(true)}
+            />
           }
         />
 
