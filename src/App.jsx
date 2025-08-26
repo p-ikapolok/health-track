@@ -1,14 +1,14 @@
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import { useState } from "react";
 
-import Home from "./pages/Home";
-import Login from "./pages/Login";
-import DoctorRegistration from "./pages/DoctorRegistration";
-import PatientRegistration from "./pages/PatientRegistration";
-import DoctorDashboard from "./pages/DoctorDashboard";
-import PatientDashboard from "./pages/PatientDashboard";
-import NotFound from "./pages/NotFound";
-import SetupPage from "./pages/SetupPage"; // splash screen
+import Home from "./pages/Home.jsx";
+import Login from "./pages/Login.jsx";
+import DoctorRegistration from "./pages/DoctorRegistration.jsx";
+import PatientRegistration from "./pages/PatientRegistration.jsx";
+import DoctorDashboard from "./pages/DoctorDashboard.jsx";
+import PatientDashboard from "./pages/PatientDashboard.jsx";
+import NotFound from "./pages/NotFound.jsx";
+import SetupPage from "./pages/SetupPage.jsx"; // splash screen
 
 function App() {
   const [doctorSetupDone, setDoctorSetupDone] = useState(false);
