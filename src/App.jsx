@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import Home from "./pages/Home";
-import DashboardPage from "./pages/DashboardPage";
+import DashboardPage from "./pages/DoctorDashboard";
 import NotFound from "./pages/NotFound";
 import Login from "./pages/Login";
 import DoctorRegistration from "./pages/DoctorRegistration";
@@ -12,7 +12,7 @@ function App() {
       <Routes>
         {/* Main pages */}
         <Route path="/" element={<Home />} />
-        <Route path="/dashboard" element={<DashboardPage />} />
+        <Route path="/dashboard" element={<DoctorDashboard />} />
 
         {/* Auth pages */}
         <Route path="/login" element={<Login />} />
