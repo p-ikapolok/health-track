@@ -11,7 +11,6 @@ import SetupPage from "./pages/SetupPage.jsx"; // splash screen
 
 function App() {
   const [doctorSetupDone, setDoctorSetupDone] = useState(false);
-  const [patientSetupDone, setPatientSetupDone] = useState(false);
 
   return (
     <Router>
@@ -39,13 +38,13 @@ function App() {
           }
         />
 
-        {/* Patient Dashboard will always show SetupPage */}
+        {/* Patient Dashboard only shows SetupPage */}
         <Route
           path="/patient-dashboard/*"
           element={
             <SetupPage
               doctorName="Patient"
-              onFinish={() => setPatientSetupDone(true)}
+              onFinish={() => console.log("Patient setup done")}
             />
           }
         />
