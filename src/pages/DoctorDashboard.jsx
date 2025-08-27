@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { FaUserMd, FaCalendarCheck, FaCog, FaBars } from "react-icons/fa";
 import logo from "../assets/logo.png";
-import AvatarSVG from "../components/AvatarSVG";
+import AvatarSVG from "../components/AvatarSVG.jsx";
 
 export default function DoctorDashboard() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
