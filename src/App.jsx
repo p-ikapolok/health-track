@@ -1,6 +1,9 @@
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import { useState } from "react";
 
+// FIX: Adjust imports to match folder structure
+// If `pages/` is inside `src/` → keep as "./pages/..."
+// If `pages/` is outside `src/` → change to "../pages/..."
 import Home from "./pages/Home.jsx";
 import Login from "./pages/Login.jsx";
 import DoctorRegistration from "./pages/DoctorRegistration.jsx";
