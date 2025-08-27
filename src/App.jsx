@@ -1,16 +1,18 @@
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import { useState } from "react";
 
-import Home from "./pages/Home.jsx";
-import Login from "./pages/Login.jsx";
-import DoctorRegistration from "./pages/DoctorRegistration.jsx";
-import PatientRegistration from "./pages/PatientRegistration.jsx";
-import DoctorDashboard from "./pages/DoctorDashboard.jsx";
-import NotFound from "./pages/NotFound.jsx";
-import SetupPage from "./pages/SetupPage.jsx"; // splash screen
+import Home from "./pages/Home";
+import Login from "./pages/Login";
+import DoctorRegistration from "./pages/DoctorRegistration";
+import PatientRegistration from "./pages/PatientRegistration";
+import DoctorDashboard from "./pages/DoctorDashboard";
+import PatientDashboard from "./pages/PatientDashboard";
+import NotFound from "./pages/NotFound";
+import SetupPage from "./pages/SetupPage"; // splash screen
 
 function App() {
   const [doctorSetupDone, setDoctorSetupDone] = useState(false);
+  const [patientSetupDone, setPatientSetupDone] = useState(false);
 
   return (
     <Router>
@@ -38,14 +40,18 @@ function App() {
           }
         />
 
-        {/* Patient Dashboard only shows SetupPage */}
+        {/* Patient Dashboard with setup screen */}
         <Route
           path="/patient-dashboard/*"
           element={
-            <SetupPage
-              doctorName="Patient"
-              onFinish={() => console.log("Patient setup done")}
-            />
+            patientSetupDone ? (
+              <PatientDashboard />
+            ) : (
+              <SetupPage
+                doctorName="Patient"
+                onFinish={() => setPatientSetupDone(true)}
+              />
+            )
           }
         />
 
@@ -60,3 +66,4 @@ function App() {
 }
 
 export default App;
+
