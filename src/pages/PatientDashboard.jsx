@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { FaHeartbeat, FaPills, FaCalendarCheck, FaCog, FaBars } from "react-icons/fa";
-import NineDots from "../components/NineDots.jsx";
+import NineDots from "./components/NineDots.jsx";
 import logo from "./assets/logo.png";
 import AvatarSVG from "./components/AvatorSVG.jsx";
 
