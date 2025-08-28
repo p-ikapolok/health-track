@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
-import Sidebar from "./Sidebar.jsx";
-import AvatarSVG from "./AvatorSVG.jsx";
+import Sidebar from "../Sidebar.jsx";
+import AvatorSVG from "../AvatorSVG.jsx";
 
 export default function DashboardLayout() {
   const [menuOpen, setMenuOpen] = useState(false);
