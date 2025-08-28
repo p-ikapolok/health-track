@@ -2,7 +2,7 @@ import { useState } from "react";
 import { FaHeartbeat, FaPills, FaCalendarCheck, FaCog, FaBars } from "react-icons/fa";
 import NineDots from "./components/NineDots.jsx";
 import logo from "./assets/logo.png";
-import AvatarSVG from "./components/AvatorSVG.jsx";
+import AvatorSVG from "./components/AvatorSVG.jsx";
 
 export default function PatientDashboard() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
