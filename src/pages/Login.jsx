@@ -1,8 +1,27 @@
+import { useState } from "react";
 import { FaGoogle } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import logo from "../assets/logo.png"; // Import your logo
 
 export default function Login() {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [role, setRole] = useState(""); // Track selected role
+  const navigate = useNavigate();
+
+  const handleLogin = () => {
+    if (!role) {
+      alert("Please select a role (Doctor or Patient).");
+      return;
+    }
+
+    if (role === "doctor") {
+      navigate("/doctor-dashboard");
+    } else if (role === "patient") {
+      navigate("/patient-dashboard");
+    }
+  };
+
   return (
     <div className="min-h-screen bg-black text-white flex flex-col">
       {/* Navbar */}
@@ -17,7 +36,7 @@ export default function Login() {
           <h1 className="text-xl font-bold tracking-wide">HEALTHTRACK</h1>
         </div>
         <Link
-          to="/doctor-registration" // You can change this to /patient-registration if needed
+          to={role === "patient" ? "/patient-registration" : "/doctor-registration"}
           className="bg-sky-200 text-black px-5 py-1 rounded-full text-sm font-semibold"
         >
           Sign up
@@ -44,6 +63,8 @@ export default function Login() {
           <label className="text-sm mb-1">USERNAME</label>
           <input
             type="text"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
             className="mb-4 p-2 w-full border border-gray-500 bg-transparent rounded-sm"
           />
 
@@ -51,6 +72,8 @@ export default function Login() {
           <label className="text-sm mb-1">PASSWORD</label>
           <input
             type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
             className="p-2 w-full border border-gray-500 bg-transparent rounded-sm"
           />
 
@@ -59,27 +82,47 @@ export default function Login() {
             Forgot password?
           </a>
 
-          {/* Role Checkboxes */}
+          {/* Role Selection (Radio Buttons) */}
           <div className="flex gap-6 mt-6">
             <label className="flex items-center gap-2">
-              <input type="checkbox" className="form-checkbox text-sky-400" />
+              <input
+                type="radio"
+                name="role"
+                value="doctor"
+                checked={role === "doctor"}
+                onChange={() => setRole("doctor")}
+                className="text-sky-400"
+              />
               <span>Doctor</span>
             </label>
             <label className="flex items-center gap-2">
-              <input type="checkbox" className="form-checkbox text-sky-400" />
+              <input
+                type="radio"
+                name="role"
+                value="patient"
+                checked={role === "patient"}
+                onChange={() => setRole("patient")}
+                className="text-sky-400"
+              />
               <span>Patient</span>
             </label>
           </div>
 
           {/* Login Button */}
-          <button className="mt-6 bg-sky-200 text-black px-6 py-2 rounded-full font-semibold">
+          <button
+            onClick={handleLogin}
+            className="mt-6 bg-sky-200 text-black px-6 py-2 rounded-full font-semibold"
+          >
             Login
           </button>
 
           {/* Signup Link */}
           <p className="mt-4 text-sm text-gray-400">
             Don’t have an account?{" "}
-            <Link to="/doctor-registration" className="text-white underline">
+            <Link
+              to={role === "patient" ? "/patient-registration" : "/doctor-registration"}
+              className="text-white underline"
+            >
               Sign up.
             </Link>
           </p>
@@ -97,3 +140,4 @@ export default function Login() {
     </div>
   );
 }
+
