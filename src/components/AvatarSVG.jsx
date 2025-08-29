@@ -1,5 +1,5 @@
 // components/AvatarSVG.jsx
-export default function AvatorSVG({ name = "Dr. Olivia Harper", size = 64, rounded = true }) {
+export default function AvatarSVG({ name = "Dr. Olivia Harper", size = 64, rounded = true }) {
   // Build initials from the name
   const initials = name
     .split(" ")
