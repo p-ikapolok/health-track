@@ -1,12 +1,146 @@
-# React + Vite
+# 🏥 HealthTrack
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+HealthTrack is a healthcare management web application built with **React**.  
+It provides dashboards for doctors and patients, enabling better communication, easy registration, and a smooth user experience.  
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Features
 
-## Expanding the ESLint configuration
+- 🔐 **Authentication Pages**
+  - Login (Doctor / Patient roles)
+  - Doctor Registration
+  - Patient Registration
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- 📊 **Dashboards**
+  - Doctor Dashboard with setup screen
+  - Patient Dashboard with setup screen
+
+- 🎨 **UI & Layout**
+  - Responsive design with Tailwind CSS
+  - Modern layout with gradient backgrounds
+  - Role-based navigation
+
+- ⚡ **Routing**
+  - Client-side routing with React Router
+  - 404 page handling
+  - Setup splash screens before dashboard
+
+---
+
+## 🖼️ Screenshots / Demo
+
+### 🔑 Login Page
+![Login Screenshot](./screenshots/login.png)
+
+### 🩺 Doctor Dashboard
+![Doctor Dashboard Screenshot](./screenshots/doctor-dashboard.png)
+
+### 👤 Patient Dashboard
+![Patient Dashboard Screenshot](./screenshots/patient-dashboard.png)
+
+### ⚠️ 404 Page
+![404 Page Screenshot](./screenshots/404.png)
+
+👉 **Live Demo:** [Deployed App Link](https://your-deployment-link.com)  
+
+---
+
+## 🛠️ Tech Stack
+
+- **React 18**
+- **React Router DOM v6**
+- **Tailwind CSS**
+- **Vite** (or CRA if you used it)
+- **Node.js & npm**
+
+---
+
+## 📂 Project Structure
+
+src/
+├── components/ # Reusable UI components
+│ ├── AvatarSVG.jsx
+│ ├── DoctorDashboardLayout.jsx
+│ ├── DoctorHeader.jsx
+│ ├── DoctorNavIcons.jsx
+│ ├── NineDots.jsx
+│ └── Sidebar.jsx
+│
+├── pages/ # Page-level components
+│ ├── Home.jsx
+│ ├── Login.jsx
+│ ├── DoctorRegistration.jsx
+│ ├── PatientRegistration.jsx
+│ ├── DoctorDashboard.jsx
+│ ├── PatientDashboard.jsx
+│ ├── NotFound.jsx
+│ └── SetupPage.jsx
+│
+├── App.jsx # App routes
+└── main.jsx # Entry point
+
+
+
+---
+
+## ⚙️ Installation & Setup
+
+Clone the repository:
+
+```bash
+git clone git@github.com:p-ikapolok/health-track.git
+cd health-track
+Install dependencies:
+
+bash
+
+npm install
+Run the app locally:
+
+bash
+
+npm run dev
+Build for production:
+
+bash
+
+npm run build
+Preview production build:
+
+bash
+
+npm run preview
+🌍 Deployment Notes
+Netlify / Vercel
+
+Add a redirect rule so React Router works on refresh:
+
+Netlify: add _redirects file in public/ with:
+
+bash
+
+/*   /index.html   200
+Vercel: create vercel.json with:
+
+json
+
+{
+  "rewrites": [{ "source": "/(.*)", "destination": "/" }]
+}
+GitHub Pages
+
+Use HashRouter instead of BrowserRouter in App.jsx.
+
+Add "homepage": "https://<username>.github.io/health-track" in package.json.
+
+👨‍💻 Author
+Peter Ikapolok
+Motto: "Success is a mind game."
+GitHub: @p-ikapolok
+
+📜 License
+This project is licensed under the MIT License.
+Feel free to use and modify as needed.
+
+
