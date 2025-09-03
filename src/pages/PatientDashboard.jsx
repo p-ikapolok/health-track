@@ -2,7 +2,8 @@ import { FaHeartbeat, FaPills, FaCalendarCheck } from "react-icons/fa";
 import DashboardLayout from "../components/DashboardLayout.jsx";
 
 export default function PatientDashboard() {
-  const navLinks = (
+  // Sidebar items specific for patients
+  const sidebarItems = (
     <>
       <li className="flex items-center gap-2 bg-gray-700 p-2 rounded cursor-pointer">
         <FaHeartbeat /> Dashboard
@@ -23,15 +24,19 @@ export default function PatientDashboard() {
   );
 
   return (
-    <DashboardLayout navLinks={navLinks} userName="Jane Doe">
-      {/* Your Patient Dashboard main content remains unchanged */}
+    <DashboardLayout sidebarItems={sidebarItems}>
+      {/* -- Dashboard Content -- */}
+
+      {/* Dashboard Header */}
       <div className="bg-gray-800 p-4 rounded-lg mb-6">
         <h2 className="text-2xl font-bold">Hello Jane Doe, Welcome Back</h2>
       </div>
 
       {/* Health Metrics */}
       <div className="bg-gray-800 p-4 rounded-lg mb-6">
-        <h3 className="text-lg font-semibold text-blue-400 mb-4">Health Metrics</h3>
+        <h3 className="text-lg font-semibold text-blue-400 mb-4">
+          Health Metrics
+        </h3>
         <div className="grid grid-cols-3 gap-4">
           <div className="bg-gray-700 p-4 rounded-lg text-center">
             <p className="font-semibold">Heart Rate</p>
@@ -50,7 +55,9 @@ export default function PatientDashboard() {
 
       {/* AI Insights */}
       <div className="bg-gray-800 p-4 rounded-lg mb-6">
-        <h3 className="text-lg font-semibold text-blue-400 mb-4">AI-Powered Insights</h3>
+        <h3 className="text-lg font-semibold text-blue-400 mb-4">
+          AI-Powered Insights
+        </h3>
         <div className="grid grid-cols-3 gap-4">
           <div className="bg-gray-700 p-4 rounded-lg">
             <p className="font-semibold">Personalized Health Recommendations</p>
@@ -69,14 +76,18 @@ export default function PatientDashboard() {
 
       {/* Upcoming Appointments */}
       <div className="bg-gray-800 p-4 rounded-lg mb-6">
-        <h3 className="text-lg font-semibold text-blue-400 mb-4">Upcoming Appointments</h3>
+        <h3 className="text-lg font-semibold text-blue-400 mb-4">
+          Upcoming Appointments
+        </h3>
         <p>🫀 Cardiology Checkup — Tomorrow, 10:00 AM</p>
         <p>👨‍⚕️ Annual Physical Exam — Next week, 02:00 PM</p>
       </div>
 
       {/* Medication Reminders */}
       <div className="bg-gray-800 p-4 rounded-lg">
-        <h3 className="text-lg font-semibold text-blue-400 mb-4">Medication Reminders</h3>
+        <h3 className="text-lg font-semibold text-blue-400 mb-4">
+          Medication Reminders
+        </h3>
         <p>💊 Annual Physical Exam 25mg — 8:00 AM</p>
         <p>💊 Annual Physical Exam 50mg — 6:00 PM</p>
         <p>💊 Annual Physical Exam 100mg — 7:00 PM</p>
@@ -84,4 +95,3 @@ export default function PatientDashboard() {
     </DashboardLayout>
   );
 }
-
