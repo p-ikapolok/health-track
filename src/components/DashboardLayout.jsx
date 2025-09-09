@@ -37,7 +37,7 @@ export default function DashboardLayout({ children, sidebarItems = [] }) {
           )}
         </div>
 
-        {/* Search Bar or Icon */}
+        {/* Search */}
         <div className="px-4 pb-4">
           {isSidebarOpen ? (
             <input
@@ -53,7 +53,7 @@ export default function DashboardLayout({ children, sidebarItems = [] }) {
           )}
         </div>
 
-        {/* Navigation */}
+        {/* Nav */}
         <nav className="flex-1 overflow-y-auto">
           <ul className="space-y-2 p-2">
             {sidebarItems.map((item, idx) => (
@@ -74,14 +74,10 @@ export default function DashboardLayout({ children, sidebarItems = [] }) {
         </div>
       </aside>
 
-      {/* Main Section */}
-      <div className="flex-1 ml-20 md:ml-64">
+      {/* Main section */}
+      <div className={`flex-1 ml-${isSidebarOpen ? "64" : "20"} transition-all`}>
         {/* Header */}
-        <header
-          className={`flex items-center justify-between bg-black px-6 py-3 fixed top-0 right-0 z-30 transition-all duration-300 ${
-            isSidebarOpen ? "left-64" : "left-20"
-          }`}
-        >
+        <header className="flex items-center justify-between bg-black px-6 py-3 fixed top-0 left-0 right-0 z-30 border-b border-gray-800">
           {/* Left: Hamburger + Logo + Name */}
           <div className="flex items-center gap-4">
             <button
@@ -90,24 +86,18 @@ export default function DashboardLayout({ children, sidebarItems = [] }) {
             >
               <FaBars />
             </button>
-            <img src={logo} alt="Logo" className="h-8" />
             <span className="font-bold text-lg">HEALTHTRACK</span>
           </div>
 
-          {/* Right: Nine Dots + Notification Bell + Avatar */}
+          {/* Right */}
           <div className="flex items-center gap-4">
-            {/* Nine Dots Menu */}
             <button className="text-gray-400 hover:text-white text-xl">
               <BsGrid3X3Gap />
             </button>
-
-            {/* Notification Bell */}
             <button className="relative text-gray-400 hover:text-white text-xl">
               <FaBell />
               <span className="absolute top-0 right-0 block h-2 w-2 rounded-full bg-red-500"></span>
             </button>
-
-            {/* Avatar */}
             <div
               onClick={() => setIsProfileMenuOpen(!isProfileMenuOpen)}
               className="relative"
@@ -138,14 +128,8 @@ export default function DashboardLayout({ children, sidebarItems = [] }) {
           </div>
         </header>
 
-        {/* Content Layout */}
-        <main
-          className={`p-6 mt-16 space-y-6 transition-all duration-300 ${
-            isSidebarOpen ? "ml-64" : "ml-20"
-          }`}
-        >
-          {children}
-        </main>
+        {/* Content */}
+        <main className="p-6 mt-16 space-y-6">{children}</main>
       </div>
     </div>
   );
