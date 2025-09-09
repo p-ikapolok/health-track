@@ -4,7 +4,7 @@ import { BsGrid3X3Gap } from "react-icons/bs"; // nine-dots menu
 import logo from "../assets/logo.png";
 import AvatarSVG from "./AvatarSVG.jsx";
 
-export default function DashboardLayout({ children, sidebarItems = [] }) {
+export default function DashboardLayout({ children, sidebarItems }) {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
 
@@ -56,15 +56,18 @@ export default function DashboardLayout({ children, sidebarItems = [] }) {
         {/* Nav */}
         <nav className="flex-1 overflow-y-auto">
           <ul className="space-y-2 p-2">
-            {sidebarItems.map((item, idx) => (
-              <li
-                key={idx}
-                className="flex items-center gap-3 px-4 py-2 hover:bg-gray-800 rounded-lg cursor-pointer"
-              >
-                {item.icon}
-                {isSidebarOpen && <span>{item.label}</span>}
-              </li>
-            ))}
+            {/* Support both JSX lists and array of {icon, label} */}
+            {Array.isArray(sidebarItems)
+              ? sidebarItems.map((item, idx) => (
+                  <li
+                    key={idx}
+                    className="flex items-center gap-3 px-4 py-2 hover:bg-gray-800 rounded-lg cursor-pointer"
+                  >
+                    {item.icon}
+                    {isSidebarOpen && <span>{item.label}</span>}
+                  </li>
+                ))
+              : sidebarItems}
           </ul>
         </nav>
 
@@ -75,9 +78,17 @@ export default function DashboardLayout({ children, sidebarItems = [] }) {
       </aside>
 
       {/* Main section */}
-      <div className={`flex-1 ml-${isSidebarOpen ? "64" : "20"} transition-all`}>
+      <div
+        className={`flex-1 transition-all duration-300 ${
+          isSidebarOpen ? "ml-64" : "ml-20"
+        }`}
+      >
         {/* Header */}
-        <header className="flex items-center justify-between bg-black px-6 py-3 fixed top-0 left-0 right-0 z-30 border-b border-gray-800">
+        <header
+          className={`flex items-center justify-between bg-black px-6 py-3 fixed top-0 right-0 z-30 border-b border-gray-800 transition-all duration-300 ${
+            isSidebarOpen ? "left-64" : "left-20"
+          }`}
+        >
           {/* Left: Hamburger + Logo + Name */}
           <div className="flex items-center gap-4">
             <button
