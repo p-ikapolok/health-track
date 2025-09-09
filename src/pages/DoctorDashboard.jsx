@@ -1,45 +1,19 @@
-import { Link } from "react-router-dom";
 import { FaUserMd, FaCalendarCheck } from "react-icons/fa";
+import { Link } from "react-router-dom";
 import DashboardLayout from "../components/DashboardLayout.jsx";
 
 export default function DoctorDashboard() {
-  // Sidebar items specific for doctor
-  const sidebarItems = (
-    <>
-      <li className="flex items-center gap-2 bg-gray-700 p-2 rounded cursor-pointer">
-        <Link to="/" className="flex items-center gap-2">
-          <FaUserMd />
-          Home
-        </Link>
-      </li>
-      <li className="hover:bg-gray-700 p-2 rounded cursor-pointer">
-        <Link to="/patients" className="flex items-center gap-2">
-          👥 Patients
-        </Link>
-      </li>
-      <li className="hover:bg-gray-700 p-2 rounded cursor-pointer">
-        <Link to="/appointments" className="flex items-center gap-2">
-          <FaCalendarCheck />
-          Appointments
-        </Link>
-      </li>
-      <li className="hover:bg-gray-700 p-2 rounded cursor-pointer">
-        <Link to="/reports" className="flex items-center gap-2">
-          📄 Reports
-        </Link>
-      </li>
-      <li className="hover:bg-gray-700 p-2 rounded cursor-pointer">
-        <Link to="/messages" className="flex items-center gap-2">
-          💬 Messages
-        </Link>
-      </li>
-    </>
-  );
+  // Sidebar items specific for doctors
+  const sidebarItems = [
+    { icon: <FaUserMd />, label: "Home", path: "/" },
+    { icon: "👥", label: "Patients", path: "/patients" },
+    { icon: <FaCalendarCheck />, label: "Appointments", path: "/appointments" },
+    { icon: "📄", label: "Reports", path: "/reports" },
+    { icon: "💬", label: "Messages", path: "/messages" },
+  ];
 
   return (
     <DashboardLayout sidebarItems={sidebarItems}>
-      {/* -- Dashboard Content -- */}
-
       {/* Dashboard Header */}
       <div className="bg-gray-800 p-4 rounded-lg mb-6">
         <h2 className="text-2xl font-bold">Dashboard</h2>
@@ -165,3 +139,4 @@ export default function DoctorDashboard() {
     </DashboardLayout>
   );
 }
+

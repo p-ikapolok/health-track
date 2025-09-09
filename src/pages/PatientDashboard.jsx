@@ -3,30 +3,16 @@ import DashboardLayout from "../components/DashboardLayout.jsx";
 
 export default function PatientDashboard() {
   // Sidebar items specific for patients
-  const sidebarItems = (
-    <>
-      <li className="flex items-center gap-2 bg-gray-700 p-2 rounded cursor-pointer">
-        <FaHeartbeat /> Dashboard
-      </li>
-      <li className="hover:bg-gray-700 p-2 rounded cursor-pointer">
-        <FaCalendarCheck /> Appointments
-      </li>
-      <li className="hover:bg-gray-700 p-2 rounded cursor-pointer">
-        <FaPills /> Medications
-      </li>
-      <li className="hover:bg-gray-700 p-2 rounded cursor-pointer">
-        📄 Reports
-      </li>
-      <li className="hover:bg-gray-700 p-2 rounded cursor-pointer">
-        💬 Messages
-      </li>
-    </>
-  );
+  const sidebarItems = [
+    { icon: <FaHeartbeat />, label: "Dashboard", path: "/patient" },
+    { icon: <FaCalendarCheck />, label: "Appointments", path: "/appointments" },
+    { icon: <FaPills />, label: "Medications", path: "/medications" },
+    { icon: "📄", label: "Reports", path: "/reports" },
+    { icon: "💬", label: "Messages", path: "/messages" },
+  ];
 
   return (
     <DashboardLayout sidebarItems={sidebarItems}>
-      {/* -- Dashboard Content -- */}
-
       {/* Dashboard Header */}
       <div className="bg-gray-800 p-4 rounded-lg mb-6">
         <h2 className="text-2xl font-bold">Hello Jane Doe, Welcome Back</h2>
@@ -95,3 +81,4 @@ export default function PatientDashboard() {
     </DashboardLayout>
   );
 }
+
