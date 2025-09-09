@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from "react";
-import { FaBars, FaCog, FaBell } from "react-icons/fa";
+import { FaBars, FaCog, FaBell, FaSearch } from "react-icons/fa";
 import { BsGrid3X3Gap } from "react-icons/bs"; // nine-dots menu
 import logo from "../assets/logo.png";
 import AvatarSVG from "./AvatarSVG.jsx";
@@ -11,7 +11,7 @@ export default function DashboardLayout({ children, sidebarItems }) {
 
   const sidebarWidth = isSidebarOpen ? "w-64" : "w-20";
 
-  // Keyboard shortcut: focus search on `/`
+  // Keyboard shortcut `/` focuses search
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.key === "/" && document.activeElement.tagName !== "INPUT") {
@@ -37,21 +37,35 @@ export default function DashboardLayout({ children, sidebarItems }) {
           )}
         </div>
 
-        {/* Search Bar */}
-        {isSidebarOpen && (
-          <div className="px-4 pb-4">
+        {/* Search */}
+        <div className="px-4 pb-4">
+          {isSidebarOpen ? (
             <input
               ref={searchInputRef}
               type="text"
               placeholder="Search... (/)"
               className="w-full bg-gray-800 text-white rounded-lg px-4 py-2 text-sm focus:outline-none focus:ring focus:ring-blue-500"
             />
-          </div>
-        )}
+          ) : (
+            <button
+              onClick={() => searchInputRef.current?.focus()}
+              className="text-gray-400 hover:text-white text-xl"
+            >
+              <FaSearch />
+            </button>
+          )}
+        </div>
 
         {/* Navigation */}
         <nav className="flex-1 overflow-y-auto">
-          <ul className="space-y-2 p-2">{sidebarItems}</ul>
+          <ul className="space-y-2 p-2">
+            {sidebarItems.map((item, idx) => (
+              <li key={idx} className="flex items-center gap-2 cursor-pointer hover:text-gray-400">
+                {item.icon}
+                {isSidebarOpen && <span>{item.label}</span>}
+              </li>
+            ))}
+          </ul>
         </nav>
 
         {/* Settings */}
@@ -64,10 +78,10 @@ export default function DashboardLayout({ children, sidebarItems }) {
       <div className="flex-1">
         {/* Header */}
         <header
-          className={`flex items-center justify-between bg-black px-6 py-3 fixed top-0 left-0 right-0 z-30 transition-all duration-300`}
-          style={{ paddingLeft: isSidebarOpen ? "16rem" : "5rem" }} // 64 or 20 width
+          className="flex items-center justify-between bg-black px-6 py-3 fixed top-0 left-0 right-0 z-30 transition-all duration-300"
+          style={{ paddingLeft: isSidebarOpen ? "16rem" : "5rem" }}
         >
-          {/* Left: Hamburger + Logo + Name */}
+          {/* Left: Hamburger + App Name (only when sidebar collapsed) */}
           <div className="flex items-center gap-2">
             <button
               onClick={() => setIsSidebarOpen(!isSidebarOpen)}
@@ -75,13 +89,12 @@ export default function DashboardLayout({ children, sidebarItems }) {
             >
               <FaBars />
             </button>
-            <img src={logo} alt="Logo" className="h-8" />
-            {isSidebarOpen && (
+            {!isSidebarOpen && (
               <span className="font-bold text-lg">HEALTHTRACK</span>
             )}
           </div>
 
-          {/* Right: Nine Dots + Notification Bell + Avatar */}
+          {/* Right: Nine Dots + Notification + Avatar */}
           <div className="flex items-center gap-4">
             <button className="text-gray-400 hover:text-white text-xl">
               <BsGrid3X3Gap />
@@ -119,42 +132,12 @@ export default function DashboardLayout({ children, sidebarItems }) {
           </div>
         </header>
 
-        {/* Content Layout */}
+        {/* Main Content */}
         <main
           className="p-6 mt-16 space-y-6 transition-all duration-300"
           style={{ paddingLeft: isSidebarOpen ? "16rem" : "5rem" }}
         >
-          {/* Top Banner / Greeting */}
-          <div className="bg-gray-900 p-4 rounded-lg shadow">
-            {children?.welcome}
-          </div>
-
-          {/* Summary Cards */}
-          <div className="bg-gray-900 p-4 rounded-lg shadow">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              {children?.summary}
-            </div>
-          </div>
-
-          {/* Insights + Image */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="bg-gray-900 p-4 rounded-lg shadow">
-              {children?.insights}
-            </div>
-            <div className="bg-gray-800 rounded-lg flex items-center justify-center">
-              {children?.image}
-            </div>
-          </div>
-
-          {/* Appointments */}
-          <div className="bg-gray-900 p-4 rounded-lg shadow">
-            {children?.appointments}
-          </div>
-
-          {/* Alerts */}
-          <div className="bg-gray-900 p-4 rounded-lg shadow">
-            {children?.alerts}
-          </div>
+          {children}
         </main>
       </div>
     </div>
