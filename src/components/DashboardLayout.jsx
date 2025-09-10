@@ -27,44 +27,47 @@ export default function DashboardLayout({ children, sidebarItems }) {
     <div className="min-h-screen bg-black text-white flex">
       {/* Sidebar */}
       <aside
-        className={`${sidebarWidth} bg-black fixed top-0 left-0 h-full z-40 transition-all duration-300 pt-16 border-r border-gray-800`}
+        className={`${sidebarWidth} bg-black fixed top-0 left-0 h-full z-40 transition-all duration-300 border-r border-gray-800`}
       >
-        {/* Search */}
-        <div className="px-4 pb-4">
-          {isSidebarOpen ? (
-            <input
-              id="sidebar-search"
-              type="text"
-              placeholder="Search..."
-              className="w-full bg-gray-800 text-white rounded-lg px-4 py-2 text-sm focus:outline-none focus:ring focus:ring-blue-500"
-            />
-          ) : (
-            <button className="text-gray-400 hover:text-white text-xl">
-              <FaSearch />
-            </button>
-          )}
-        </div>
+        {/* Sidebar inner (starts below header) */}
+        <div className="mt-16">
+          {/* Search */}
+          <div className="px-4 pb-4">
+            {isSidebarOpen ? (
+              <input
+                id="sidebar-search"
+                type="text"
+                placeholder="Search..."
+                className="w-full bg-gray-800 text-white rounded-lg px-4 py-2 text-sm focus:outline-none focus:ring focus:ring-blue-500"
+              />
+            ) : (
+              <button className="text-gray-400 hover:text-white text-xl">
+                <FaSearch />
+              </button>
+            )}
+          </div>
 
-        {/* Nav */}
-        <nav className="flex-1 overflow-y-auto">
-          <ul className="space-y-2 p-2">
-            {Array.isArray(sidebarItems)
-              ? sidebarItems.map((item, idx) => (
-                  <li
-                    key={idx}
-                    className="flex items-center gap-3 px-4 py-2 hover:bg-gray-800 rounded-lg cursor-pointer"
-                  >
-                    {item.icon}
-                    {isSidebarOpen && <span>{item.label}</span>}
-                  </li>
-                ))
-              : sidebarItems}
-          </ul>
-        </nav>
+          {/* Nav */}
+          <nav className="flex-1 overflow-y-auto">
+            <ul className="space-y-2 p-2">
+              {Array.isArray(sidebarItems)
+                ? sidebarItems.map((item, idx) => (
+                    <li
+                      key={idx}
+                      className="flex items-center gap-3 px-4 py-2 hover:bg-gray-800 rounded-lg cursor-pointer"
+                    >
+                      {item.icon}
+                      {isSidebarOpen && <span>{item.label}</span>}
+                    </li>
+                  ))
+                : sidebarItems}
+            </ul>
+          </nav>
 
-        {/* Settings */}
-        <div className="p-4 flex items-center gap-2 cursor-pointer hover:text-gray-400">
-          <FaCog /> {isSidebarOpen && "Settings"}
+          {/* Settings */}
+          <div className="p-4 flex items-center gap-2 cursor-pointer hover:text-gray-400">
+            <FaCog /> {isSidebarOpen && "Settings"}
+          </div>
         </div>
       </aside>
 
@@ -137,4 +140,3 @@ export default function DashboardLayout({ children, sidebarItems }) {
     </div>
   );
 }
-
