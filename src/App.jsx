@@ -10,7 +10,6 @@ import PatientDashboard from "./pages/PatientDashboard.jsx";
 import Appointments from "./pages/patient/Appointments.jsx";
 import Medications from "./pages/patient/Medications.jsx";
 import Messages from "./pages/patient/Messages.jsx";
-import Reports from "./pages/patient/Reports.jsx";
 import NotFound from "./pages/NotFound.jsx";
 import SetupPage from "./pages/SetupPage.jsx";
 
