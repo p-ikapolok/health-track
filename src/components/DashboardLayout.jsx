@@ -24,118 +24,119 @@ export default function DashboardLayout({ children, sidebarItems }) {
   }, []);
 
   return (
-    <div className="min-h-screen bg-black text-white flex">
-      {/* Sidebar */}
-      <aside
-        className={`${sidebarWidth} bg-black fixed top-0 left-0 h-full z-40 transition-all duration-300 border-r border-gray-800`}
-      >
-        {/* Sidebar inner (starts below header) */}
-        <div className="mt-16">
-          {/* Search */}
-          <div className="px-4 pb-4">
-            {isSidebarOpen ? (
-              <input
-                id="sidebar-search"
-                type="text"
-                placeholder="Search..."
-                className="w-full bg-gray-800 text-white rounded-lg px-4 py-2 text-sm focus:outline-none focus:ring focus:ring-blue-500"
-              />
-            ) : (
-              <button className="text-gray-400 hover:text-white text-xl">
-                <FaSearch />
-              </button>
-            )}
-          </div>
-
-          {/* Nav */}
-          <nav className="flex-1 overflow-y-auto">
-            <ul className="space-y-2 p-2">
-              {Array.isArray(sidebarItems)
-                ? sidebarItems.map((item, idx) => (
-                    <li
-                      key={idx}
-                      className="flex items-center gap-3 px-4 py-2 hover:bg-gray-800 rounded-lg cursor-pointer"
-                    >
-                      {item.icon}
-                      {isSidebarOpen && <span>{item.label}</span>}
-                    </li>
-                  ))
-                : sidebarItems}
-            </ul>
-          </nav>
-
-          {/* Settings */}
-          <div className="p-4 flex items-center gap-2 cursor-pointer hover:text-gray-400">
-            <FaCog /> {isSidebarOpen && "Settings"}
-          </div>
-        </div>
-      </aside>
-
-      {/* Main section */}
-      <div
-        className={`flex-1 transition-all duration-300 ${
-          isSidebarOpen ? "ml-64" : "ml-20"
+    <div className="min-h-screen bg-black text-white flex flex-col">
+      {/* Header */}
+      <header
+        className={`flex items-center justify-between bg-black px-6 py-3 fixed top-0 left-0 right-0 z-30 border-b border-gray-800 transition-all duration-300 ${
+          isSidebarOpen ? "pl-64" : "pl-20"
         }`}
       >
-        {/* Header */}
-        <header
-          className={`flex items-center justify-between bg-black px-6 py-3 fixed top-0 right-0 z-30 border-b border-gray-800 transition-all duration-300 ${
-            isSidebarOpen ? "left-64" : "left-20"
-          }`}
-        >
-          {/* Left: Hamburger + Logo + Name */}
-          <div className="flex items-center gap-3">
-            <button
-              onClick={() => setIsSidebarOpen(!isSidebarOpen)}
-              className="text-gray-400 hover:text-white text-xl"
-            >
-              <FaBars />
-            </button>
-            <img src={logo} alt="Logo" className="w-8 h-8" />
-            <span className="font-bold text-lg">HEALTHTRACK</span>
-          </div>
+        {/* Left: Hamburger + Logo + Name */}
+        <div className="flex items-center gap-3">
+          <button
+            onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+            className="text-gray-400 hover:text-white text-xl"
+          >
+            <FaBars />
+          </button>
+          <img src={logo} alt="Logo" className="w-8 h-8" />
+          <span className="font-bold text-lg">HEALTHTRACK</span>
+        </div>
 
-          {/* Right */}
-          <div className="flex items-center gap-4">
-            <button className="text-gray-400 hover:text-white text-xl">
-              <BsGrid3X3Gap />
-            </button>
-            <button className="relative text-gray-400 hover:text-white text-xl">
-              <FaBell />
-              <span className="absolute top-0 right-0 block h-2 w-2 rounded-full bg-red-500"></span>
-            </button>
-            <div
-              onClick={() => setIsProfileMenuOpen(!isProfileMenuOpen)}
-              className="relative"
-            >
-              <div className="border-2 border-gray-600 rounded-full hover:opacity-90 cursor-pointer">
-                <AvatarSVG name="User" size={40} />
+        {/* Right */}
+        <div className="flex items-center gap-4">
+          <button className="text-gray-400 hover:text-white text-xl">
+            <BsGrid3X3Gap />
+          </button>
+          <button className="relative text-gray-400 hover:text-white text-xl">
+            <FaBell />
+            <span className="absolute top-0 right-0 block h-2 w-2 rounded-full bg-red-500"></span>
+          </button>
+          <div
+            onClick={() => setIsProfileMenuOpen(!isProfileMenuOpen)}
+            className="relative"
+          >
+            <div className="border-2 border-gray-600 rounded-full hover:opacity-90 cursor-pointer">
+              <AvatarSVG name="User" size={40} />
+            </div>
+
+            {isProfileMenuOpen && (
+              <div className="absolute right-0 mt-2 w-48 bg-gray-800 rounded-lg shadow-lg z-50">
+                <ul className="text-sm">
+                  <li className="px-4 py-2 hover:bg-gray-700 cursor-pointer">
+                    View Profile
+                  </li>
+                  <li className="px-4 py-2 hover:bg-gray-700 cursor-pointer">
+                    Settings
+                  </li>
+                  <li className="px-4 py-2 hover:bg-gray-700 cursor-pointer">
+                    Support
+                  </li>
+                  <li className="px-4 py-2 hover:bg-red-600 cursor-pointer text-red-300">
+                    Log Out
+                  </li>
+                </ul>
               </div>
+            )}
+          </div>
+        </div>
+      </header>
 
-              {isProfileMenuOpen && (
-                <div className="absolute right-0 mt-2 w-48 bg-gray-800 rounded-lg shadow-lg z-50">
-                  <ul className="text-sm">
-                    <li className="px-4 py-2 hover:bg-gray-700 cursor-pointer">
-                      View Profile
-                    </li>
-                    <li className="px-4 py-2 hover:bg-gray-700 cursor-pointer">
-                      Settings
-                    </li>
-                    <li className="px-4 py-2 hover:bg-gray-700 cursor-pointer">
-                      Support
-                    </li>
-                    <li className="px-4 py-2 hover:bg-red-600 cursor-pointer text-red-300">
-                      Log Out
-                    </li>
-                  </ul>
-                </div>
+      <div className="flex pt-16">
+        {/* Sidebar */}
+        <aside
+          className={`${sidebarWidth} bg-black border-r border-gray-800 h-[calc(100vh-4rem)] transition-all duration-300 fixed top-16 left-0`}
+        >
+          {/* Sidebar inner */}
+          <div className="h-full flex flex-col">
+            {/* Search */}
+            <div className="px-4 pb-4 pt-2">
+              {isSidebarOpen ? (
+                <input
+                  id="sidebar-search"
+                  type="text"
+                  placeholder="Search..."
+                  className="w-full bg-gray-800 text-white rounded-lg px-4 py-2 text-sm focus:outline-none focus:ring focus:ring-blue-500"
+                />
+              ) : (
+                <button className="text-gray-400 hover:text-white text-xl">
+                  <FaSearch />
+                </button>
               )}
             </div>
-          </div>
-        </header>
 
-        {/* Content */}
-        <main className="p-6 mt-16 space-y-6">{children}</main>
+            {/* Nav */}
+            <nav className="flex-1 overflow-y-auto">
+              <ul className="space-y-2 p-2">
+                {Array.isArray(sidebarItems)
+                  ? sidebarItems.map((item, idx) => (
+                      <li
+                        key={idx}
+                        className="flex items-center gap-3 px-4 py-2 hover:bg-gray-800 rounded-lg cursor-pointer"
+                      >
+                        {item.icon}
+                        {isSidebarOpen && <span>{item.label}</span>}
+                      </li>
+                    ))
+                  : sidebarItems}
+              </ul>
+            </nav>
+
+            {/* Settings */}
+            <div className="p-4 flex items-center gap-2 cursor-pointer hover:text-gray-400">
+              <FaCog /> {isSidebarOpen && "Settings"}
+            </div>
+          </div>
+        </aside>
+
+        {/* Main content */}
+        <main
+          className={`flex-1 transition-all duration-300 p-6 ml-${
+            isSidebarOpen ? "64" : "20"
+          }`}
+        >
+          {children}
+        </main>
       </div>
     </div>
   );
