@@ -62,7 +62,6 @@ function App() {
           <Route path="appointments" element={<Appointments />} />
           <Route path="medications" element={<Medications />} />
           <Route path="messages" element={<Messages />} />
-          <Route path="reports" element={<Reports />} />
         </Route>
 
         {/* 404 Page */}
