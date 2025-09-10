@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { FaBars, FaCog, FaBell, FaSearch } from "react-icons/fa";
 import { BsGrid3X3Gap } from "react-icons/bs";
 import logo from "../assets/logo.png";
@@ -8,7 +8,6 @@ import AvatarSVG from "./AvatarSVG.jsx";
 export default function DashboardLayout({ children, sidebarItems = [] }) {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
-  const location = useLocation();
 
   const sidebarWidth = isSidebarOpen ? 256 : 80; // px
 
@@ -36,31 +35,24 @@ export default function DashboardLayout({ children, sidebarItems = [] }) {
     if (item && item.$$typeof) return <div key={idx}>{item}</div>;
 
     if (item && (item.path || item.icon || item.label)) {
-      const active = item.path && location.pathname.startsWith(item.path);
-      const baseClasses =
-        "flex items-center gap-3 px-4 py-2 rounded-lg transition-colors text-sm";
-      const activeClasses = active
-        ? "bg-gray-800 text-white"
-        : "hover:bg-gray-800 text-gray-300";
-
-      const inner = (
-        <>
-          <span className="text-lg">{item.icon}</span>
-          <span className={`${isSidebarOpen ? "inline" : "hidden"} truncate`}>
-            {item.label}
-          </span>
-        </>
-      );
-
-      return item.path ? (
+      return (
         <li key={idx}>
-          <Link to={item.path} className={`${baseClasses} ${activeClasses}`}>
-            {inner}
-          </Link>
-        </li>
-      ) : (
-        <li key={idx} className={`${baseClasses} ${activeClasses}`}>
-          {inner}
+          <NavLink
+            to={item.path}
+            end
+            className={({ isActive }) =>
+              `flex items-center gap-3 px-4 py-2 rounded-lg transition-colors text-sm ${
+                isActive
+                  ? "bg-gray-800 text-white"
+                  : "hover:bg-gray-800 text-gray-300"
+              }`
+            }
+          >
+            <span className="text-lg">{item.icon}</span>
+            <span className={`${isSidebarOpen ? "inline" : "hidden"} truncate`}>
+              {item.label}
+            </span>
+          </NavLink>
         </li>
       );
     }
@@ -71,9 +63,7 @@ export default function DashboardLayout({ children, sidebarItems = [] }) {
   return (
     <div className="min-h-screen bg-black text-white">
       {/* Header */}
-      <header
-        className="fixed top-0 left-0 right-0 z-40 bg-black border-b border-gray-800 h-16 flex items-center px-4"
-      >
+      <header className="fixed top-0 left-0 right-0 z-40 bg-black border-b border-gray-800 h-16 flex items-center px-4">
         {/* Left: Hamburger + Logo + Name */}
         <div className="flex items-center gap-3 flex-shrink-0">
           <button
@@ -89,10 +79,16 @@ export default function DashboardLayout({ children, sidebarItems = [] }) {
 
         {/* Right: icons */}
         <div className="ml-auto flex items-center gap-4">
-          <button className="text-gray-400 hover:text-white text-xl" aria-label="Apps">
+          <button
+            className="text-gray-400 hover:text-white text-xl"
+            aria-label="Apps"
+          >
             <BsGrid3X3Gap />
           </button>
-          <button className="relative text-gray-400 hover:text-white text-xl" aria-label="Notifications">
+          <button
+            className="relative text-gray-400 hover:text-white text-xl"
+            aria-label="Notifications"
+          >
             <FaBell />
             <span className="absolute -top-1 -right-1 block h-2 w-2 rounded-full bg-red-500" />
           </button>
@@ -106,10 +102,18 @@ export default function DashboardLayout({ children, sidebarItems = [] }) {
             {isProfileMenuOpen && (
               <div className="absolute right-0 mt-2 w-48 bg-gray-800 rounded-lg shadow-lg z-50">
                 <ul className="text-sm">
-                  <li className="px-4 py-2 hover:bg-gray-700 cursor-pointer">View Profile</li>
-                  <li className="px-4 py-2 hover:bg-gray-700 cursor-pointer">Settings</li>
-                  <li className="px-4 py-2 hover:bg-gray-700 cursor-pointer">Support</li>
-                  <li className="px-4 py-2 hover:bg-red-600 cursor-pointer text-red-300">Log Out</li>
+                  <li className="px-4 py-2 hover:bg-gray-700 cursor-pointer">
+                    View Profile
+                  </li>
+                  <li className="px-4 py-2 hover:bg-gray-700 cursor-pointer">
+                    Settings
+                  </li>
+                  <li className="px-4 py-2 hover:bg-gray-700 cursor-pointer">
+                    Support
+                  </li>
+                  <li className="px-4 py-2 hover:bg-red-600 cursor-pointer text-red-300">
+                    Log Out
+                  </li>
                 </ul>
               </div>
             )}
@@ -155,7 +159,9 @@ export default function DashboardLayout({ children, sidebarItems = [] }) {
             <div className="p-4 border-t border-gray-800">
               <div className="flex items-center gap-2 cursor-pointer hover:text-gray-300">
                 <FaCog />
-                <span className={`${isSidebarOpen ? "inline" : "hidden"}`}>Settings</span>
+                <span className={`${isSidebarOpen ? "inline" : "hidden"}`}>
+                  Settings
+                </span>
               </div>
             </div>
           </div>
