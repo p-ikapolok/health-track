@@ -30,6 +30,25 @@ function App() {
         <Route path="/doctor-registration" element={<DoctorRegistration />} />
         <Route path="/patient-registration" element={<PatientRegistration />} />
 
+        <Route
+  path="/patient-dashboard/*"
+  element={
+    patientSetupDone ? (
+      <PatientDashboard />
+    ) : (
+      <SetupPage
+        doctorName="Patient"
+        onFinish={() => setPatientSetupDone(true)}
+      />
+    )
+  }
+>
+  <Route path="appointments" element={<Appointments />} />
+  <Route path="medications" element={<Medications />} />
+  <Route path="messages" element={<Messages />} />
+  <Route path="reports" element={<Reports />} />
+</Route>
+
         {/* Doctor Dashboard with setup screen */}
         <Route
           path="/doctor-dashboard/*"
