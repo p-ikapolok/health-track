@@ -10,11 +10,13 @@ import Messages from "./patient/Messages";
 
 export default function PatientDashboard() {
   const sidebarItems = [
-    { path: "/patient-dashboard", icon: <FaHome />, label: "Dashboard" },
-    { path: "/patient-dashboard/appointments", icon: <FaCalendarCheck />, label: "Appointments" },
-    { path: "/patient-dashboard/medications", icon: <FaPills />, label: "Medications" },
-    { path: "/patient-dashboard/messages", icon: <FaEnvelope />, label: "Messages" },
-  ];
+  { icon: <FaHeartbeat />, label: "Dashboard", path: "/patient-dashboard" },
+  { icon: <FaCalendarCheck />, label: "Appointments", path: "/patient-dashboard/appointments" },
+  { icon: <FaPills />, label: "Medications", path: "/patient-dashboard/medications" },
+  { icon: "📄", label: "Reports", path: "/patient-dashboard/reports" },
+  { icon: "💬", label: "Messages", path: "/patient-dashboard/messages" },
+];
+
 
   return (
     <DashboardLayout sidebarItems={sidebarItems}>
