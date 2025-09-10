@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
 import { FaBars, FaCog, FaBell, FaSearch } from "react-icons/fa";
 import { BsGrid3X3Gap } from "react-icons/bs"; // nine-dots menu
 import logo from "../assets/logo.png";
@@ -8,7 +7,6 @@ import AvatarSVG from "./AvatarSVG.jsx";
 export default function DashboardLayout({ children, sidebarItems }) {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
-  const location = useLocation();
 
   const sidebarWidth = isSidebarOpen ? "w-64" : "w-20";
 
@@ -29,10 +27,10 @@ export default function DashboardLayout({ children, sidebarItems }) {
     <div className="min-h-screen bg-black text-white flex">
       {/* Sidebar */}
       <aside
-        className={`${sidebarWidth} bg-black fixed top-0 left-0 h-full z-40 transition-all duration-300`}
+        className={`${sidebarWidth} bg-black border-r border-gray-800 fixed top-0 left-0 h-full z-40 transition-all duration-300`}
       >
         {/* Logo + App Name */}
-        <div className="flex items-center gap-2 p-4 border-b border-gray-800">
+        <div className="flex items-center gap-2 p-4">
           <img src={logo} alt="Logo" className="w-8 h-8" />
           {isSidebarOpen && (
             <span className="font-bold text-lg">HEALTHTRACK</span>
@@ -40,7 +38,7 @@ export default function DashboardLayout({ children, sidebarItems }) {
         </div>
 
         {/* Search */}
-        <div className="px-4 pb-4 mt-4">
+        <div className="px-4 pb-4">
           {isSidebarOpen ? (
             <input
               id="sidebar-search"
@@ -56,33 +54,25 @@ export default function DashboardLayout({ children, sidebarItems }) {
         </div>
 
         {/* Nav */}
-        <nav className="flex-1 overflow-y-auto border-t border-gray-800">
+        <nav className="flex-1 overflow-y-auto">
           <ul className="space-y-2 p-2">
-            {Array.isArray(sidebarItems) &&
-              sidebarItems.map((item, idx) => {
-                const active = location.pathname.includes(item.path);
-                return (
-                  <li key={idx}>
-                    <Link
-                      to={item.path}
-                      className={`flex items-center gap-3 px-4 py-2 rounded-lg cursor-pointer transition 
-                      ${
-                        active
-                          ? "bg-gray-800 text-white"
-                          : "hover:bg-gray-800 text-gray-300"
-                      }`}
-                    >
-                      {item.icon}
-                      {isSidebarOpen && <span>{item.label}</span>}
-                    </Link>
+            {/* Support both JSX lists and array of {icon, label} */}
+            {Array.isArray(sidebarItems)
+              ? sidebarItems.map((item, idx) => (
+                  <li
+                    key={idx}
+                    className="flex items-center gap-3 px-4 py-2 hover:bg-gray-800 rounded-lg cursor-pointer"
+                  >
+                    {item.icon}
+                    {isSidebarOpen && <span>{item.label}</span>}
                   </li>
-                );
-              })}
+                ))
+              : sidebarItems}
           </ul>
         </nav>
 
         {/* Settings */}
-        <div className="p-4 flex items-center gap-2 cursor-pointer hover:text-gray-400 border-t border-gray-800">
+        <div className="p-4 flex items-center gap-2 cursor-pointer hover:text-gray-400">
           <FaCog /> {isSidebarOpen && "Settings"}
         </div>
       </aside>
@@ -99,7 +89,7 @@ export default function DashboardLayout({ children, sidebarItems }) {
             isSidebarOpen ? "left-64" : "left-20"
           }`}
         >
-          {/* Left: Hamburger + Name */}
+          {/* Left: Hamburger + Logo + Name */}
           <div className="flex items-center gap-4">
             <button
               onClick={() => setIsSidebarOpen(!isSidebarOpen)}
