@@ -6,9 +6,14 @@ import Login from "./pages/Login.jsx";
 import DoctorRegistration from "./pages/DoctorRegistration.jsx";
 import PatientRegistration from "./pages/PatientRegistration.jsx";
 import DoctorDashboard from "./pages/DoctorDashboard.jsx";
-import PatientDashboard from "./pages/PatientDashboard.jsx";
 import NotFound from "./pages/NotFound.jsx";
 import SetupPage from "./pages/SetupPage.jsx"; // splash screen
+
+// ✅ Import patient pages from the new folder
+import PatientDashboard from "./pages/patient/PatientDashboard.jsx";
+import Appointments from "./pages/patient/Appointments.jsx";
+import Medications from "./pages/patient/Medications.jsx";
+import Messages from "./pages/patient/Messages.jsx";
 
 function App() {
   const [doctorSetupDone, setDoctorSetupDone] = useState(false);
@@ -53,7 +58,12 @@ function App() {
               />
             )
           }
-        />
+        >
+          {/* ✅ Nested routes inside patient dashboard */}
+          <Route path="appointments" element={<Appointments />} />
+          <Route path="medications" element={<Medications />} />
+          <Route path="messages" element={<Messages />} />
+        </Route>
 
         {/* 404 Page */}
         <Route path="/404" element={<NotFound />} />
