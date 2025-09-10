@@ -6,7 +6,7 @@ import Login from "./pages/Login.jsx";
 import DoctorRegistration from "./pages/DoctorRegistration.jsx";
 import PatientRegistration from "./pages/PatientRegistration.jsx";
 import DoctorDashboard from "./pages/DoctorDashboard.jsx";
-import PatientDashboard from "./pages/patient/PatientDashboard.jsx";
+import PatientDashboard from "./pages/PatientDashboard.jsx";
 import Appointments from "./pages/patient/Appointments.jsx";
 import Medications from "./pages/patient/Medications.jsx";
 import Messages from "./pages/patient/Messages.jsx";
