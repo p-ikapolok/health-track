@@ -6,14 +6,13 @@ import Login from "./pages/Login.jsx";
 import DoctorRegistration from "./pages/DoctorRegistration.jsx";
 import PatientRegistration from "./pages/PatientRegistration.jsx";
 import DoctorDashboard from "./pages/DoctorDashboard.jsx";
-import NotFound from "./pages/NotFound.jsx";
-import SetupPage from "./pages/SetupPage.jsx"; // splash screen
-
-// ✅ Import patient pages from the new folder
 import PatientDashboard from "./pages/patient/PatientDashboard.jsx";
 import Appointments from "./pages/patient/Appointments.jsx";
 import Medications from "./pages/patient/Medications.jsx";
 import Messages from "./pages/patient/Messages.jsx";
+import Reports from "./pages/patient/Reports.jsx";
+import NotFound from "./pages/NotFound.jsx";
+import SetupPage from "./pages/SetupPage.jsx";
 
 function App() {
   const [doctorSetupDone, setDoctorSetupDone] = useState(false);
@@ -29,25 +28,6 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/doctor-registration" element={<DoctorRegistration />} />
         <Route path="/patient-registration" element={<PatientRegistration />} />
-
-        <Route
-  path="/patient-dashboard/*"
-  element={
-    patientSetupDone ? (
-      <PatientDashboard />
-    ) : (
-      <SetupPage
-        doctorName="Patient"
-        onFinish={() => setPatientSetupDone(true)}
-      />
-    )
-  }
->
-  <Route path="appointments" element={<Appointments />} />
-  <Route path="medications" element={<Medications />} />
-  <Route path="messages" element={<Messages />} />
-  <Route path="reports" element={<Reports />} />
-</Route>
 
         {/* Doctor Dashboard with setup screen */}
         <Route
@@ -78,10 +58,12 @@ function App() {
             )
           }
         >
-          {/* ✅ Nested routes inside patient dashboard */}
+          {/* 👇 Nested patient routes */}
+          <Route index element={<div>Welcome to your dashboard</div>} />
           <Route path="appointments" element={<Appointments />} />
           <Route path="medications" element={<Medications />} />
           <Route path="messages" element={<Messages />} />
+          <Route path="reports" element={<Reports />} />
         </Route>
 
         {/* 404 Page */}
