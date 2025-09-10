@@ -10,11 +10,6 @@ import PatientDashboard from "./pages/PatientDashboard.jsx";
 import NotFound from "./pages/NotFound.jsx";
 import SetupPage from "./pages/SetupPage.jsx"; // splash screen
 
-// ✅ Import patient dashboard subpages
-import Appointments from "./pages/patient/Appointments.jsx";
-import Messages from "./pages/patient/Messages.jsx";
-import Medications from "./pages/patient/Medications.jsx";
-
 function App() {
   const [doctorSetupDone, setDoctorSetupDone] = useState(false);
   const [patientSetupDone, setPatientSetupDone] = useState(false);
@@ -58,12 +53,7 @@ function App() {
               />
             )
           }
-        >
-          {/* ✅ Patient dashboard subroutes */}
-          <Route path="appointments" element={<Appointments />} />
-          <Route path="messages" element={<Messages />} />
-          <Route path="medications" element={<Medications />} />
-        </Route>
+        />
 
         {/* 404 Page */}
         <Route path="/404" element={<NotFound />} />
