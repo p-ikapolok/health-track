@@ -27,16 +27,8 @@ export default function DashboardLayout({ children, sidebarItems }) {
     <div className="min-h-screen bg-black text-white flex">
       {/* Sidebar */}
       <aside
-        className={`${sidebarWidth} bg-black border-r border-gray-800 fixed top-0 left-0 h-full z-40 transition-all duration-300`}
+        className={`${sidebarWidth} bg-black fixed top-0 left-0 h-full z-40 transition-all duration-300 pt-16 border-r border-gray-800`}
       >
-        {/* Logo + App Name */}
-        <div className="flex items-center gap-2 p-4">
-          <img src={logo} alt="Logo" className="w-8 h-8" />
-          {isSidebarOpen && (
-            <span className="font-bold text-lg">HEALTHTRACK</span>
-          )}
-        </div>
-
         {/* Search */}
         <div className="px-4 pb-4">
           {isSidebarOpen ? (
@@ -56,7 +48,6 @@ export default function DashboardLayout({ children, sidebarItems }) {
         {/* Nav */}
         <nav className="flex-1 overflow-y-auto">
           <ul className="space-y-2 p-2">
-            {/* Support both JSX lists and array of {icon, label} */}
             {Array.isArray(sidebarItems)
               ? sidebarItems.map((item, idx) => (
                   <li
@@ -90,13 +81,14 @@ export default function DashboardLayout({ children, sidebarItems }) {
           }`}
         >
           {/* Left: Hamburger + Logo + Name */}
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-3">
             <button
               onClick={() => setIsSidebarOpen(!isSidebarOpen)}
               className="text-gray-400 hover:text-white text-xl"
             >
               <FaBars />
             </button>
+            <img src={logo} alt="Logo" className="w-8 h-8" />
             <span className="font-bold text-lg">HEALTHTRACK</span>
           </div>
 
