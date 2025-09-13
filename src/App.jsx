@@ -57,7 +57,7 @@ function App() {
             )
           }
         >
-          {/* 👇 Nested patient routes */}
+          {/*  Nested patient routes */}
           <Route index element={<div>Welcome to your dashboard</div>} />
           <Route path="appointments" element={<Appointments />} />
           <Route path="medications" element={<Medications />} />
