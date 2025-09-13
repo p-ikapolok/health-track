@@ -1,5 +1,5 @@
 import { Routes, Route, Navigate } from "react-router-dom";
-import { FaCalendarCheck, FaPills, FaEnvelope, FaHome } from "react-icons/fa";
+import { FaCalendarCheck, FaPills, FaEnvelope, FaHome, FaHeartbeat } from "react-icons/fa";
 import DashboardLayout from "../components/DashboardLayout";
 
 // Patient pages
@@ -22,7 +22,7 @@ export default function PatientDashboard() {
     <DashboardLayout sidebarItems={sidebarItems}>
       <Routes>
         {/* Dashboard Home */}
-        <Route path="/" element={<PatientHome />} />
+        <Route index element={<PatientHome />} />
         {/* Pages */}
         <Route path="appointments" element={<Appointments />} />
         <Route path="medications" element={<Medications />} />
